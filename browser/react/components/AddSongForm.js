@@ -36,7 +36,6 @@ export default class AddSongForm extends Component {
     axios.post(`/api/playlists/${playlistId}/songs`, {song: songArr[0]})
       .then(res => res.data)
       .then(song => {
-        console.log('songName', song.name)
         this.setState({
           song: song
         })
