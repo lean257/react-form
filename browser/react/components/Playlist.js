@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Songs from './Songs';
 import axios from 'axios'
+import AddSongForm from './AddSongForm'
 
 export default class Playlist extends Component {
 
@@ -32,7 +33,6 @@ export default class Playlist extends Component {
   componentWillReceiveProps(nextProps) {
     const nextPlaylistId = nextProps.match.params.playlistId
     const currentPlaylistId = this.props.match.params.playlistId
-    console.log(nextProps)
     if (nextPlaylistId !== currentPlaylistId) {
       this.fetchPlaylist(nextPlaylistId);
     }
@@ -45,13 +45,12 @@ export default class Playlist extends Component {
       <div>
         <h3>{ playlist.name }</h3>
         <Songs songs={playlist.songs} /> {/** Hooray for reusability! */}
-        { playlist.songs && !playlist.songs.length && <small>No songs.</small> }
+        { playlist.songs && !playlist.songs.length && <small>{playlist.songs}</small> }
         <hr />
+        <AddSongForm playlistId={playlist.id}/>
       </div>
     )
   }
 
 
 }
-
-
